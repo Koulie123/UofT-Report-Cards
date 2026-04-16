@@ -87,7 +87,6 @@
     cursor: pointer;
     transition: background 0.18s;
   }
-
   .btn-browse:hover { background: #2a5a8c; }
 
   #file-input { display: none; }
@@ -182,13 +181,13 @@
   }
   .btn-print:hover { background: #4a8aaf; }
 
-  /* ─── Cards Grid ─── */
+  /* ─── Cards Grid (screen) ─── */
   #cards-container {
     padding: 28px 32px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
   }
 
@@ -203,17 +202,17 @@
   .card-header {
     background: #a8c8e0;
     border-bottom: 2px solid #7aaac8;
-    padding: 10px 14px;
+    padding: 12px 16px;
     text-align: center;
   }
-  .card-header .org { font-size: 1rem; font-weight: 900; color: #0d2a44; }
-  .card-header .card-title { font-size: 0.92rem; font-weight: 900; color: #0d2a44; text-transform: uppercase; }
+  .card-header .org        { font-size: 1.15rem; font-weight: 900; color: #0d2a44; }
+  .card-header .card-title { font-size: 1.05rem; font-weight: 900; color: #0d2a44; text-transform: uppercase; }
 
-  .card-body { padding: 10px 12px 6px; flex: 1; }
+  .card-body { padding: 10px 13px 8px; flex: 1; display: flex; flex-direction: column; }
 
-  .card-field { margin-bottom: 6px; }
+  .card-field { margin-bottom: 7px; }
 
-  /* ── Inline field: label + value on one row ── */
+  /* Inline field */
   .card-field.inline {
     display: flex;
     align-items: stretch;
@@ -222,8 +221,8 @@
   .card-field.inline .f-label {
     background: #bedaee;
     border-right: 1px solid #8ab0cc;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+    padding: 6px 11px;
+    font-size: 0.92rem;
     font-weight: 700;
     color: #0d2a44;
     white-space: nowrap;
@@ -232,8 +231,8 @@
     align-items: center;
   }
   .card-field.inline .f-value {
-    padding: 5px 10px;
-    font-size: 0.82rem;
+    padding: 6px 11px;
+    font-size: 0.94rem;
     color: #0d2a44;
     background: white;
     flex: 1;
@@ -241,72 +240,115 @@
     align-items: center;
   }
 
-  /* ── Comments field: stacked, tall ── */
-  .field-comments { display: flex; flex-direction: column; flex: 1; }
+  /* Comments field — grows to fill remaining space */
+  .field-comments {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 7px;
+  }
   .field-comments .f-label {
     background: #bedaee;
     border: 1px solid #8ab0cc;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+    padding: 6px 11px;
+    font-size: 0.92rem;
     font-weight: 700;
     color: #0d2a44;
   }
   .field-comments .f-value {
     border: 1px solid #8ab0cc;
     border-top: none;
-    padding: 6px 10px;
-    font-size: 0.82rem;
+    padding: 8px 11px;
+    font-size: 0.94rem;
     color: #0d2a44;
     flex: 1;
-    min-height: 220px;
+    min-height: 180px;
     white-space: pre-wrap;
-    line-height: 1.55;
+    line-height: 1.6;
     background: white;
   }
 
   .card-footer {
     border-top: 1px solid #8ab0cc;
-    padding: 8px 12px;
-    font-size: 0.72rem;
+    padding: 8px 13px;
+    font-size: 0.82rem;
     color: #222;
     line-height: 1.55;
     background: #f5f5f5;
   }
   .card-footer a { color: #1a5aaa; }
 
-  /* ─── Print: landscape, 2 cards per page ─── */
+  /* ══════════════════════════════════════
+     PRINT — landscape, full-page, 2-up
+     Usable area on landscape letter with 12mm margins:
+       width  ≈ 257mm  (11in − 2×12mm)
+       height ≈ 192mm  (8.5in − 2×12mm)
+     Each card: ~124mm wide, 192mm tall
+  ══════════════════════════════════════ */
   @page {
-    size: 11in 8.5in landscape;
-    margin: 10mm;
+    size: letter landscape;
+    margin: 12mm;
   }
 
   @media print {
-    body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
 
     #upload-screen { display: none !important; }
-    #cards-screen { display: block !important; }
-    .top-bar { display: none !important; }
+    #cards-screen  { display: block !important; width: 100%; height: 100%; }
+    .top-bar       { display: none !important; }
 
+    /* Each "page group" is a row of 2 cards that fills the printable area */
     #cards-container {
       padding: 0;
       margin: 0;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8mm;
       width: 100%;
-      max-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6mm;
+      /* No height set here — let page-group divs control it */
     }
 
-    /* New page before every odd card after the first → 2 cards per page */
-    .swim-card:nth-child(2n+1):not(:first-child) {
-      page-break-before: always;
+    /* Wrap pairs in a page-filling div via JS at print time */
+    .print-page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6mm;
+      width: 100%;
+      height: 192mm;   /* full usable height with 12mm margins */
+      page-break-after: always;
+      break-after: page;
+    }
+    .print-page:last-child {
+      page-break-after: auto;
+      break-after: auto;
     }
 
-    .swim-card { page-break-inside: avoid; border: 2px solid #8ab0cc !important; }
-    .card-header { background: #a8c8e0 !important; }
+    .swim-card {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      height: 100%;
+      border: 2px solid #8ab0cc !important;
+    }
+
+    .card-header  { background: #a8c8e0 !important; }
     .card-field.inline .f-label { background: #bedaee !important; }
-    .field-comments .f-label { background: #bedaee !important; }
-    .card-footer { background: #f5f5f5 !important; }
+    .field-comments .f-label    { background: #bedaee !important; }
+    .card-footer  { background: #f5f5f5 !important; }
+
+    /* Slightly larger text for print */
+    .card-header .org        { font-size: 1.25rem; }
+    .card-header .card-title { font-size: 1.1rem;  }
+    .card-field.inline .f-label,
+    .field-comments .f-label { font-size: 1rem; }
+    .card-field.inline .f-value,
+    .field-comments .f-value { font-size: 1rem; }
+    .card-footer             { font-size: 0.88rem; }
   }
 
   @media (max-width: 680px) {
@@ -351,14 +393,13 @@
     <div class="top-bar-right">
       <span class="card-count" id="card-count"></span>
       <button class="btn-new" onclick="resetToUpload()">↩ New File</button>
-      <button class="btn-print" onclick="window.print()">🖨 Print Cards</button>
+      <button class="btn-print" onclick="doPrint()">🖨 Print Cards</button>
     </div>
   </div>
   <div id="cards-container"></div>
 </div>
 
 <script>
-  // Fields: comments:true = stacked tall block; comments:false = inline single row
   const FIELDS = [
     { key: 'Name:',                  label: 'Name:',                  comments: false },
     { key: 'Swim Level:',            label: 'Swim Level:',            comments: false },
@@ -422,58 +463,81 @@
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
+  function makeCard(row) {
+    const card = document.createElement('div');
+    card.className = 'swim-card';
+
+    const header = document.createElement('div');
+    header.className = 'card-header';
+    header.innerHTML = '<div class="org">Junior Blues Aquatics</div><div class="card-title">Swim Progress Comment Card</div>';
+    card.appendChild(header);
+
+    const body = document.createElement('div');
+    body.className = 'card-body';
+
+    FIELDS.forEach(f => {
+      const field = document.createElement('div');
+      let value = row[f.key];
+      if (f.key === 'Date:') value = formatDate(value);
+      else value = (value === null || value === undefined) ? '' : String(value);
+
+      if (f.comments) {
+        field.className = 'card-field field-comments';
+        field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
+      } else {
+        field.className = 'card-field inline';
+        field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
+      }
+      body.appendChild(field);
+    });
+
+    card.appendChild(body);
+
+    const footer = document.createElement('div');
+    footer.className = 'card-footer';
+    footer.innerHTML = `Registration for Spring/Summer 2026 Junior Blues programs will be April 1<sup>st</sup> at 7am.<br>Please use our online registration service at: <a href="https://${FOOTER_URL}">${FOOTER_URL}</a>`;
+    card.appendChild(footer);
+
+    return card;
+  }
+
   function renderCards(rows) {
     const container = document.getElementById('cards-container');
     container.innerHTML = '';
 
-    rows.forEach(row => {
-      const card = document.createElement('div');
-      card.className = 'swim-card';
-
-      // Header
-      const header = document.createElement('div');
-      header.className = 'card-header';
-      header.innerHTML = '<div class="org">Junior Blues Aquatics</div><div class="card-title">Swim Progress Comment Card</div>';
-      card.appendChild(header);
-
-      // Body
-      const body = document.createElement('div');
-      body.className = 'card-body';
-
-      FIELDS.forEach(f => {
-        const field = document.createElement('div');
-
-        let value = row[f.key];
-        if (f.key === 'Date:') value = formatDate(value);
-        else value = (value === null || value === undefined) ? '' : String(value);
-
-        if (f.comments) {
-          // Stacked tall block for Instructor Comments
-          field.className = 'card-field field-comments';
-          field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
-        } else {
-          // Inline: label left, value right
-          field.className = 'card-field inline';
-          field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
-        }
-
-        body.appendChild(field);
-      });
-
-      card.appendChild(body);
-
-      // Footer
-      const footer = document.createElement('div');
-      footer.className = 'card-footer';
-      footer.innerHTML = `Registration for Spring/Summer 2026 Junior Blues programs will be April 1<sup>st</sup> at 7am.<br>Please use our online registration service at: <a href="https://${FOOTER_URL}">${FOOTER_URL}</a>`;
-      card.appendChild(footer);
-
-      container.appendChild(card);
-    });
+    // Build flat list of cards — print layout handled in doPrint()
+    rows.forEach(row => container.appendChild(makeCard(row)));
 
     document.getElementById('card-count').textContent = rows.length + ' card' + (rows.length !== 1 ? 's' : '');
     document.getElementById('upload-screen').style.display = 'none';
     document.getElementById('cards-screen').style.display = 'block';
+  }
+
+  // Before printing: restructure DOM into .print-page wrappers (2 cards each),
+  // then restore afterwards so the screen view is unchanged.
+  function doPrint() {
+    const container = document.getElementById('cards-container');
+    const cards = Array.from(container.children);
+
+    // Build print-page groups
+    const pages = [];
+    for (let i = 0; i < cards.length; i += 2) {
+      const page = document.createElement('div');
+      page.className = 'print-page';
+      page.appendChild(cards[i].cloneNode(true));
+      if (cards[i + 1]) page.appendChild(cards[i + 1].cloneNode(true));
+      pages.push(page);
+    }
+
+    // Swap container contents
+    container.innerHTML = '';
+    pages.forEach(p => container.appendChild(p));
+
+    window.print();
+
+    // Restore flat card list
+    container.innerHTML = '';
+    cards.forEach(c => container.appendChild(c));
   }
 
   function showError(msg) {
