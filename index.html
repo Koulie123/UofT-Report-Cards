@@ -116,11 +116,7 @@
     gap: 3px 12px;
   }
 
-  .col-hint-grid span {
-    font-size: 0.8rem;
-    color: #1a3a5c;
-  }
-
+  .col-hint-grid span { font-size: 0.8rem; color: #1a3a5c; }
   .col-hint-grid span::before { content: "• "; color: #6fa3c8; }
 
   .error-box {
@@ -158,7 +154,6 @@
   }
 
   .top-bar-right { display: flex; gap: 10px; align-items: center; }
-
   .card-count { font-size: 0.78rem; opacity: 0.65; }
 
   .btn-new {
@@ -172,7 +167,6 @@
     cursor: pointer;
     transition: all 0.15s;
   }
-
   .btn-new:hover { border-color: white; background: rgba(255,255,255,0.1); }
 
   .btn-print {
@@ -186,7 +180,6 @@
     cursor: pointer;
     transition: background 0.15s;
   }
-
   .btn-print:hover { background: #4a8aaf; }
 
   /* ─── Cards Grid ─── */
@@ -195,7 +188,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 28px;
-    max-width: 1080px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -203,6 +196,8 @@
   .swim-card {
     background: white;
     border: 2px solid #8ab0cc;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-header {
@@ -211,37 +206,62 @@
     padding: 10px 14px;
     text-align: center;
   }
-
   .card-header .org { font-size: 1rem; font-weight: 900; color: #0d2a44; }
   .card-header .card-title { font-size: 0.92rem; font-weight: 900; color: #0d2a44; text-transform: uppercase; }
 
-  .card-body { padding: 10px 12px 6px; }
+  .card-body { padding: 10px 12px 6px; flex: 1; }
 
-  .card-field { margin-bottom: 7px; }
+  .card-field { margin-bottom: 6px; }
 
-  .f-label {
+  /* ── Inline field: label + value on one row ── */
+  .card-field.inline {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #8ab0cc;
+  }
+  .card-field.inline .f-label {
+    background: #bedaee;
+    border-right: 1px solid #8ab0cc;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0d2a44;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .card-field.inline .f-value {
+    padding: 5px 10px;
+    font-size: 0.82rem;
+    color: #0d2a44;
+    background: white;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Comments field: stacked, tall ── */
+  .field-comments { display: flex; flex-direction: column; flex: 1; }
+  .field-comments .f-label {
     background: #bedaee;
     border: 1px solid #8ab0cc;
-    padding: 4px 10px;
+    padding: 5px 10px;
     font-size: 0.8rem;
     font-weight: 700;
     color: #0d2a44;
   }
-
-  .f-value {
+  .field-comments .f-value {
     border: 1px solid #8ab0cc;
     border-top: none;
-    padding: 4px 10px;
+    padding: 6px 10px;
     font-size: 0.82rem;
     color: #0d2a44;
-    min-height: 22px;
-    background: white;
-  }
-
-  .field-comments .f-value {
-    min-height: 130px;
+    flex: 1;
+    min-height: 220px;
     white-space: pre-wrap;
     line-height: 1.55;
+    background: white;
   }
 
   .card-footer {
@@ -252,10 +272,14 @@
     line-height: 1.55;
     background: #f5f5f5;
   }
-
   .card-footer a { color: #1a5aaa; }
 
-  /* ─── Print ─── */
+  /* ─── Print: landscape, 2 cards per page ─── */
+  @page {
+    size: 11in 8.5in landscape;
+    margin: 10mm;
+  }
+
   @media print {
     body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
@@ -264,7 +288,7 @@
     .top-bar { display: none !important; }
 
     #cards-container {
-      padding: 10mm;
+      padding: 0;
       margin: 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -273,14 +297,15 @@
       max-width: 100%;
     }
 
-    /* Every odd card that isn't the first starts a new page, forcing 2-per-page */
+    /* New page before every odd card after the first → 2 cards per page */
     .swim-card:nth-child(2n+1):not(:first-child) {
       page-break-before: always;
     }
 
     .swim-card { page-break-inside: avoid; border: 2px solid #8ab0cc !important; }
     .card-header { background: #a8c8e0 !important; }
-    .f-label { background: #bedaee !important; }
+    .card-field.inline .f-label { background: #bedaee !important; }
+    .field-comments .f-label { background: #bedaee !important; }
     .card-footer { background: #f5f5f5 !important; }
   }
 
@@ -333,6 +358,7 @@
 </div>
 
 <script>
+  // Fields: comments:true = stacked tall block; comments:false = inline single row
   const FIELDS = [
     { key: 'Name:',                  label: 'Name:',                  comments: false },
     { key: 'Swim Level:',            label: 'Swim Level:',            comments: false },
@@ -344,7 +370,6 @@
 
   const FOOTER_URL = 'recreation.utoronto.ca';
 
-  // Drag & Drop
   const dropZone = document.getElementById('drop-zone');
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
@@ -371,10 +396,9 @@
 
         const missing = FIELDS.map(f => f.key).filter(k => !(k in rows[0]));
         if (missing.length) {
-          showError('Missing columns: ' + missing.join(', ') + '. Please check your headers match exactly (including the colons).');
+          showError('Missing columns: ' + missing.join(', ') + '. Please check headers match exactly (including colons).');
           return;
         }
-
         renderCards(rows);
       } catch(err) {
         showError('Could not read the file. Please make sure it is a valid .xlsx or .xls file.');
@@ -418,13 +442,21 @@
 
       FIELDS.forEach(f => {
         const field = document.createElement('div');
-        field.className = 'card-field' + (f.comments ? ' field-comments' : '');
 
         let value = row[f.key];
         if (f.key === 'Date:') value = formatDate(value);
         else value = (value === null || value === undefined) ? '' : String(value);
 
-        field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
+        if (f.comments) {
+          // Stacked tall block for Instructor Comments
+          field.className = 'card-field field-comments';
+          field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
+        } else {
+          // Inline: label left, value right
+          field.className = 'card-field inline';
+          field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
+        }
+
         body.appendChild(field);
       });
 
