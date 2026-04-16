@@ -206,6 +206,40 @@
     .swim-card { height: auto; }
     .field-comments .f-value { min-height: 200px; }
   }
+
+  /* ─── Template download link ─── */
+  .dl-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: #1a3a5c;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid #7aaac8;
+    border-radius: 6px;
+    padding: 8px 20px;
+    background: white;
+    transition: all 0.18s;
+  }
+  .dl-link:hover {
+    background: #e8f3fb;
+    border-color: #1a3a5c;
+  }
+
+  .btn-template {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.45);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .btn-template:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
 </style>
 </head>
 <body>
@@ -232,6 +266,10 @@
     </div>
   </div>
 
+  <a class="dl-link" href="Template Comment Card Sheet.xlsx" download>
+    ⬇ Download Excel Template
+  </a>
+
   <div class="error-box" id="error-box"></div>
 </div>
 
@@ -242,6 +280,7 @@
     <div class="top-bar-right">
       <span class="card-count" id="card-count"></span>
       <button class="btn-new" onclick="resetToUpload()">↩ New File</button>
+      <a class="btn-template" href="Template Comment Card Sheet.xlsx" download>⬇ Template</a>
       <button class="btn-print" onclick="doPrint()">🖨 Print Cards</button>
     </div>
   </div>
