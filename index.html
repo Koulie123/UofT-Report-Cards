@@ -23,43 +23,20 @@
     min-height: 100vh;
     padding: 40px 20px;
   }
-
-  .upload-logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: #1a3a5c;
-    margin-bottom: 4px;
-    text-align: center;
-  }
-
-  .upload-sub {
-    font-size: 0.85rem;
-    color: #4a6a8a;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 36px;
-    text-align: center;
-  }
+  .upload-logo { font-size: 1.8rem; font-weight: 900; color: #1a3a5c; margin-bottom: 4px; text-align: center; }
+  .upload-sub  { font-size: 0.85rem; color: #4a6a8a; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 36px; text-align: center; }
 
   .drop-zone {
-    width: 460px;
-    max-width: 100%;
-    border: 3px dashed #7aaac8;
-    border-radius: 10px;
-    background: white;
-    padding: 52px 36px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.18s;
+    width: 460px; max-width: 100%;
+    border: 3px dashed #7aaac8; border-radius: 10px;
+    background: white; padding: 52px 36px; text-align: center;
+    cursor: pointer; transition: all 0.18s;
   }
   .drop-zone.dragover, .drop-zone:hover {
-    border-color: #1a3a5c;
-    background: #f0f7ff;
-    box-shadow: 0 6px 20px rgba(26,58,92,0.12);
-    transform: translateY(-2px);
+    border-color: #1a3a5c; background: #f0f7ff;
+    box-shadow: 0 6px 20px rgba(26,58,92,0.12); transform: translateY(-2px);
   }
-
-  .drop-icon { font-size: 2.8rem; margin-bottom: 14px; }
+  .drop-icon  { font-size: 2.8rem; margin-bottom: 14px; }
   .drop-title { font-size: 1.1rem; font-weight: 700; color: #1a3a5c; margin-bottom: 6px; }
   .drop-hint  { font-size: 0.82rem; color: #7a9ab8; margin-bottom: 22px; }
 
@@ -71,51 +48,26 @@
   .btn-browse:hover { background: #2a5a8c; }
   #file-input { display: none; }
 
-  .col-hint {
-    margin-top: 24px; background: #f0f7ff;
-    border: 1px solid #c0d8ee; border-radius: 8px;
-    padding: 14px 22px; width: 460px; max-width: 100%;
-  }
-  .col-hint h4 {
-    font-size: 0.75rem; text-transform: uppercase;
-    letter-spacing: 1px; color: #4a6a8a; margin-bottom: 8px;
-  }
+  .col-hint { margin-top: 24px; background: #f0f7ff; border: 1px solid #c0d8ee; border-radius: 8px; padding: 14px 22px; width: 460px; max-width: 100%; }
+  .col-hint h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #4a6a8a; margin-bottom: 8px; }
   .col-hint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 12px; }
   .col-hint-grid span { font-size: 0.8rem; color: #1a3a5c; }
   .col-hint-grid span::before { content: "• "; color: #6fa3c8; }
 
-  .error-box {
-    display: none; margin-top: 14px; background: #fff0f0;
-    border: 1px solid #e08080; color: #8a2020;
-    padding: 10px 18px; border-radius: 6px;
-    font-size: 0.82rem; width: 460px; max-width: 100%;
-  }
+  .error-box { display: none; margin-top: 14px; background: #fff0f0; border: 1px solid #e08080; color: #8a2020; padding: 10px 18px; border-radius: 6px; font-size: 0.82rem; width: 460px; max-width: 100%; }
 
   /* ─── Cards Screen ─── */
   #cards-screen { display: none; }
 
-  .top-bar {
-    background: #1a3a5c; color: white;
-    padding: 12px 28px; display: flex;
-    align-items: center; justify-content: space-between;
-    gap: 12px; flex-wrap: wrap;
-  }
+  .top-bar { background: #1a3a5c; color: white; padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .top-bar-title { font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
   .top-bar-right { display: flex; gap: 10px; align-items: center; }
   .card-count { font-size: 0.78rem; opacity: 0.65; }
 
-  .btn-new {
-    background: transparent; border: 2px solid rgba(255,255,255,0.45);
-    color: white; padding: 6px 16px; border-radius: 4px;
-    font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
-  }
+  .btn-new { background: transparent; border: 2px solid rgba(255,255,255,0.45); color: white; padding: 6px 16px; border-radius: 4px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.15s; }
   .btn-new:hover { border-color: white; background: rgba(255,255,255,0.1); }
 
-  .btn-print {
-    background: #5a9abf; border: none; color: white;
-    padding: 7px 18px; border-radius: 4px;
-    font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.15s;
-  }
+  .btn-print { background: #5a9abf; border: none; color: white; padding: 7px 18px; border-radius: 4px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.15s; }
   .btn-print:hover { background: #4a8aaf; }
 
   /* ─── Screen card grid ─── */
@@ -128,140 +80,87 @@
     margin: 0 auto;
   }
 
-  /* ─── Single Card ─── */
+  /* ─── Single Card ───
+     On screen we give each card a fixed height that mirrors the print proportions.
+     Landscape letter (11×8.5in) at 96dpi screen ≈ 1056×816px usable after margins.
+     Each card ≈ half width × full height → ratio roughly 0.55:1 (taller than wide).
+     We use a fixed 520px height which gives a comfortable preview.
+  ─── */
   .swim-card {
     background: white;
     border: 2px solid #8ab0cc;
     display: flex;
     flex-direction: column;
+    height: 520px;   /* fixed screen preview height — mirrors print proportions */
   }
 
   .card-header {
-    background: #a8c8e0;
-    border-bottom: 2px solid #7aaac8;
-    padding: 12px 16px;
-    text-align: center;
-    flex-shrink: 0;
+    background: #a8c8e0; border-bottom: 2px solid #7aaac8;
+    padding: 12px 16px; text-align: center; flex-shrink: 0;
   }
   .card-header .org        { font-size: 1.15rem; font-weight: 900; color: #0d2a44; }
   .card-header .card-title { font-size: 1.05rem; font-weight: 900; color: #0d2a44; text-transform: uppercase; }
 
-  /* card-body fills all space between header and footer */
   .card-body {
     padding: 10px 13px 8px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    min-height: 0; /* critical: allows flex children to shrink/grow past content */
+    min-height: 0;
   }
 
   .card-field { margin-bottom: 7px; flex-shrink: 0; }
 
   /* Inline field */
-  .card-field.inline {
-    display: flex;
-    align-items: stretch;
-    border: 1px solid #8ab0cc;
-  }
+  .card-field.inline { display: flex; align-items: stretch; border: 1px solid #8ab0cc; }
   .card-field.inline .f-label {
-    background: #bedaee;
-    border-right: 1px solid #8ab0cc;
-    padding: 6px 11px;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #0d2a44;
-    white-space: nowrap;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
+    background: #bedaee; border-right: 1px solid #8ab0cc;
+    padding: 6px 11px; font-size: 0.92rem; font-weight: 700; color: #0d2a44;
+    white-space: nowrap; flex-shrink: 0; display: flex; align-items: center;
   }
   .card-field.inline .f-value {
-    padding: 6px 11px;
-    font-size: 0.94rem;
-    color: #0d2a44;
-    background: white;
-    flex: 1;
-    display: flex;
-    align-items: center;
+    padding: 6px 11px; font-size: 0.94rem; color: #0d2a44;
+    background: white; flex: 1; display: flex; align-items: center;
   }
 
-  /* Comments — stretches to fill all leftover vertical space */
-  .field-comments {
-    display: flex;
-    flex-direction: column;
-    flex: 1;          /* grow to fill remaining card-body space */
-    min-height: 0;    /* allow shrinking below content size */
-    margin-bottom: 7px;
-  }
+  /* Comments — stretches to fill all remaining card-body height */
+  .field-comments { display: flex; flex-direction: column; flex: 1; min-height: 0; margin-bottom: 7px; }
   .field-comments .f-label {
-    background: #bedaee;
-    border: 1px solid #8ab0cc;
-    padding: 6px 11px;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #0d2a44;
-    flex-shrink: 0;
+    background: #bedaee; border: 1px solid #8ab0cc;
+    padding: 6px 11px; font-size: 0.92rem; font-weight: 700; color: #0d2a44; flex-shrink: 0;
   }
   .field-comments .f-value {
-    border: 1px solid #8ab0cc;
-    border-top: none;
-    padding: 8px 11px;
-    font-size: 0.94rem;
-    color: #0d2a44;
-    flex: 1;          /* fill remaining space inside .field-comments */
-    min-height: 0;
-    white-space: pre-wrap;
-    line-height: 1.6;
+    border: 1px solid #8ab0cc; border-top: none;
+    padding: 8px 11px; font-size: 0.94rem; color: #0d2a44;
+    flex: 1; min-height: 0;
+    white-space: pre-wrap; line-height: 1.6;
     background: white;
+    overflow: hidden;
   }
 
   .card-footer {
-    border-top: 1px solid #8ab0cc;
-    padding: 8px 13px;
-    font-size: 0.82rem;
-    color: #222;
-    line-height: 1.55;
-    background: #f5f5f5;
-    flex-shrink: 0;
+    border-top: 1px solid #8ab0cc; padding: 8px 13px;
+    font-size: 0.82rem; color: #222; line-height: 1.55;
+    background: #f5f5f5; flex-shrink: 0;
   }
   .card-footer a { color: #1a5aaa; }
 
   /* ══════════════════════════════════════════
-     PRINT
-     Letter landscape = 11 × 8.5 in
-     12mm margins → usable: ~257 × 192 mm
+     PRINT — letter landscape, full page, 2-up
+     12mm margins → usable ≈ 257 × 192 mm
   ══════════════════════════════════════════ */
-  @page {
-    size: letter landscape;
-    margin: 12mm;
-  }
+  @page { size: letter landscape; margin: 12mm; }
 
   @media print {
-    html, body {
-      background: white;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
+    html, body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
     #upload-screen { display: none !important; }
     #cards-screen  { display: block !important; }
     .top-bar       { display: none !important; }
 
-    /* The container itself is just a shell — .print-page divs control layout */
-    #cards-container {
-      display: block;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      max-width: 100%;
-    }
+    #cards-container { display: block; padding: 0; margin: 0; width: 100%; max-width: 100%; }
 
-    /*
-      Each .print-page = one printed page.
-      height: 100vh in print context = the full printable height
-      (browsers treat 1vh = 1% of page height after margins in print).
-      Using 99vh avoids hairline overflow that can cause a blank extra page.
-    */
+    /* Each .print-page is one printed sheet */
     .print-page {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -271,14 +170,11 @@
       page-break-after: always;
       break-after: page;
     }
-    .print-page:last-child {
-      page-break-after: avoid;
-      break-after: avoid;
-    }
+    .print-page:last-child { page-break-after: avoid; break-after: avoid; }
 
-    /* Cards fill the full height of the page cell */
+    /* Cards fill the full height of their page cell */
     .swim-card {
-      height: 100%;
+      height: 100% !important;   /* override the 520px screen height */
       min-height: 0;
       display: flex;
       flex-direction: column;
@@ -287,32 +183,15 @@
       border: 2px solid #8ab0cc !important;
     }
 
-    .card-body {
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-    }
+    .card-body    { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    .field-comments { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    .field-comments .f-value { flex: 1; min-height: 0; overflow: hidden; }
 
-    .field-comments {
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .field-comments .f-value {
-      flex: 1;
-      min-height: 0;
-    }
-
-    /* Color preservation */
     .card-header                { background: #a8c8e0 !important; }
     .card-field.inline .f-label { background: #bedaee !important; }
     .field-comments .f-label    { background: #bedaee !important; }
     .card-footer                { background: #f5f5f5 !important; }
 
-    /* Slightly boosted print font sizes */
     .card-header .org        { font-size: 1.3rem; }
     .card-header .card-title { font-size: 1.15rem; }
     .card-field.inline .f-label,
@@ -324,6 +203,8 @@
 
   @media (max-width: 680px) {
     #cards-container { grid-template-columns: 1fr; padding: 16px; }
+    .swim-card { height: auto; }
+    .field-comments .f-value { min-height: 200px; }
   }
 </style>
 </head>
@@ -345,12 +226,9 @@
   <div class="col-hint">
     <h4>Expected Column Headers in your Excel file</h4>
     <div class="col-hint-grid">
-      <span>Name:</span>
-      <span>Swim Level:</span>
-      <span>Instructor Comments:</span>
-      <span>Next Time Register In:</span>
-      <span>Instructor Name:</span>
-      <span>Date:</span>
+      <span>Name:</span><span>Swim Level:</span>
+      <span>Instructor Comments:</span><span>Next Time Register In:</span>
+      <span>Instructor Name:</span><span>Date:</span>
     </div>
   </div>
 
@@ -382,57 +260,40 @@
 
   const FOOTER_URL = 'recreation.utoronto.ca';
 
+  // ── Drag & Drop ──
   const dropZone = document.getElementById('drop-zone');
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-  dropZone.addEventListener('drop', e => {
-    e.preventDefault();
-    dropZone.classList.remove('dragover');
-    if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]);
-  });
-  document.getElementById('file-input').addEventListener('change', e => {
-    if (e.target.files[0]) processFile(e.target.files[0]);
-  });
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]); });
+  document.getElementById('file-input').addEventListener('change', e => { if (e.target.files[0]) processFile(e.target.files[0]); });
 
   function processFile(file) {
     document.getElementById('error-box').style.display = 'none';
     const reader = new FileReader();
     reader.onload = e => {
       try {
-        const wb = XLSX.read(e.target.result, { type: 'array', cellDates: true });
-        const ws = wb.Sheets[wb.SheetNames[0]];
+        const wb   = XLSX.read(e.target.result, { type: 'array', cellDates: true });
+        const ws   = wb.Sheets[wb.SheetNames[0]];
         const rows = XLSX.utils.sheet_to_json(ws, { defval: '' });
         if (!rows.length) { showError('The spreadsheet appears to be empty.'); return; }
         const missing = FIELDS.map(f => f.key).filter(k => !(k in rows[0]));
-        if (missing.length) {
-          showError('Missing columns: ' + missing.join(', ') + '. Please check headers match exactly (including colons).');
-          return;
-        }
+        if (missing.length) { showError('Missing columns: ' + missing.join(', ') + '. Please check headers match exactly (including colons).'); return; }
         renderCards(rows);
-      } catch(err) {
-        showError('Could not read the file. Please make sure it is a valid .xlsx or .xls file.');
-      }
+      } catch(err) { showError('Could not read the file. Please make sure it is a valid .xlsx or .xls file.'); }
     };
     reader.readAsArrayBuffer(file);
   }
 
   function formatDate(val) {
     if (!val) return '';
-    if (val instanceof Date) {
-      const y = val.getFullYear();
-      const m = String(val.getMonth()+1).padStart(2,'0');
-      const d = String(val.getDate()).padStart(2,'0');
-      return `${y}-${m}-${d}`;
-    }
+    if (val instanceof Date) { return val.getFullYear() + '-' + String(val.getMonth()+1).padStart(2,'0') + '-' + String(val.getDate()).padStart(2,'0'); }
     return String(val);
   }
 
-  function escapeHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
+  function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
   function makeCard(row) {
-    const card = document.createElement('div');
+    const card   = document.createElement('div');
     card.className = 'swim-card';
 
     const header = document.createElement('div');
@@ -445,17 +306,12 @@
 
     FIELDS.forEach(f => {
       const field = document.createElement('div');
-      let value = row[f.key];
+      let value   = row[f.key];
       if (f.key === 'Date:') value = formatDate(value);
       else value = (value === null || value === undefined) ? '' : String(value);
 
-      if (f.comments) {
-        field.className = 'card-field field-comments';
-        field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
-      } else {
-        field.className = 'card-field inline';
-        field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
-      }
+      field.className = f.comments ? 'card-field field-comments' : 'card-field inline';
+      field.innerHTML = `<div class="f-label">${f.label}</div><div class="f-value">${escapeHtml(value)}</div>`;
       body.appendChild(field);
     });
 
@@ -478,11 +334,54 @@
     document.getElementById('cards-screen').style.display = 'block';
   }
 
-  // Restructure into .print-page pairs → print → restore
+  /* ── Font auto-shrink ──────────────────────────────────────────────────
+     Measures each comment value box and shrinks font until text fits.
+     Uses a binary search between MIN and the computed default size for
+     speed, then does a final fine-tune pass to avoid overshooting.
+  ──────────────────────────────────────────────────────────────────────── */
+  const FONT_MIN  = 0.5;   // rem floor
+  const FONT_DEFAULT = 1.0; // rem — reset target before measuring
+
+  function fitAllComments() {
+    document.querySelectorAll('.field-comments .f-value').forEach(fitOne);
+  }
+
+  function fitOne(el) {
+    // 1. Reset to default so we start from a known state
+    el.style.fontSize = FONT_DEFAULT + 'rem';
+
+    // 2. If it already fits, nothing to do
+    if (el.scrollHeight <= el.clientHeight) return;
+
+    // 3. Binary search for the largest size that fits
+    let lo = FONT_MIN, hi = FONT_DEFAULT;
+    for (let i = 0; i < 20; i++) {           // 20 iterations → precision ~0.001rem
+      const mid = (lo + hi) / 2;
+      el.style.fontSize = mid + 'rem';
+      if (el.scrollHeight <= el.clientHeight) {
+        lo = mid;   // fits — try larger
+      } else {
+        hi = mid;   // overflows — try smaller
+      }
+    }
+    // Land on lo (the largest confirmed-fitting size)
+    el.style.fontSize = lo + 'rem';
+  }
+
+  /* ── Print ─────────────────────────────────────────────────────────────
+     Strategy:
+       1. Restructure DOM into .print-page pairs (each fills one page).
+       2. Wait for a full repaint so print-layout heights are resolved.
+       3. Run fitAllComments() against the now-correctly-sized print cards.
+       4. Call window.print().
+       5. After the print dialog closes, restore the flat screen layout
+          and re-fit for screen sizes.
+  ──────────────────────────────────────────────────────────────────────── */
   function doPrint() {
     const container = document.getElementById('cards-container');
-    const cards = Array.from(container.children);
+    const cards     = Array.from(container.children);
 
+    // Build print pages
     container.innerHTML = '';
     for (let i = 0; i < cards.length; i += 2) {
       const page = document.createElement('div');
@@ -492,17 +391,20 @@
       container.appendChild(page);
     }
 
-    window.print();
-
-    container.innerHTML = '';
-    cards.forEach(c => container.appendChild(c));
+    // Two rAF passes ensure the browser has fully laid out the print DOM
+    // before we measure for font-fitting.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        fitAllComments();
+        window.print();
+        // Restore flat screen layout after printing
+        container.innerHTML = '';
+        cards.forEach(c => container.appendChild(c));
+      });
+    });
   }
 
-  function showError(msg) {
-    const b = document.getElementById('error-box');
-    b.textContent = '⚠ ' + msg;
-    b.style.display = 'block';
-  }
+  function showError(msg) { const b = document.getElementById('error-box'); b.textContent = '⚠ ' + msg; b.style.display = 'block'; }
 
   function resetToUpload() {
     document.getElementById('cards-screen').style.display = 'none';
