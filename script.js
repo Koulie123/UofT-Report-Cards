@@ -89,6 +89,7 @@
      speed, then does a final fine-tune pass to avoid overshooting.
   ──────────────────────────────────────────────────────────────────────── */
   const FONT_MIN  = 0.5;   // rem floor
+  const FONT_MAX  = 3.0;   // rem ceiling — allow growing to fill the box
   const FONT_DEFAULT = 1.0; // rem — reset target before measuring
 
   function fitAllComments() {
@@ -96,15 +97,9 @@
   }
 
   function fitOne(el) {
-    // 1. Reset to default so we start from a known state
-    el.style.fontSize = FONT_DEFAULT + 'rem';
-
-    // 2. If it already fits, nothing to do
-    if (el.scrollHeight <= el.clientHeight) return;
-
-    // 3. Binary search for the largest size that fits
-    let lo = FONT_MIN, hi = FONT_DEFAULT;
-    for (let i = 0; i < 20; i++) {           // 20 iterations → precision ~0.001rem
+    // Binary search for the largest size that fits, between MIN and MAX.
+    let lo = FONT_MIN, hi = FONT_MAX;
+    for (let i = 0; i < 20; i++) {           // 20 iterations → precision ~0.0001rem
       const mid = (lo + hi) / 2;
       el.style.fontSize = mid + 'rem';
       if (el.scrollHeight <= el.clientHeight) {
